@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URL Shortener</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        width: 450px;
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+
+    .result {
+        margin-top: 20px;
+        padding: 10px;
+        background: #e9f7ef;
+        border-radius: 5px;
+        display: none;
+    }
+
+    .result a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>URL Shortener</h1>
+
+    <input type="url" id="longUrl" placeholder="Enter your long URL here">
+
+    <button onclick="shortenURL()">Shorten URL</button>
+
+    <div class="result" id="result">
+        <p>Short URL:</p>
+        <a href="#" id="shortUrl" target="_blank"></a>
+    </div>
+</div>
+
+<script>
+function shortenURL() {
+    let longUrl = document.getElementById("longUrl").value;
+
+    if (longUrl === "") {
+        alert("Please enter a URL");
+        return;
+    }
+
+    let shortCode = Math.random().toString(36).substring(2, 8);
+
+    let shortUrl = "https://short.ly/" + shortCode;
+
+    document.getElementById("shortUrl").textContent = shortUrl;
+    document.getElementById("shortUrl").href = longUrl;
+
+    document.getElementById("result").style.display = "block";
+}
+</script>
+
+</body>
+</html>
